@@ -1,11 +1,15 @@
 #!/bin/bash
-apt-get install mysql-server -y 
-debconf-set-selections <<< 'mysql-server mysql-server/ password wordpress' 
-sed -i "/bind-address/d" /etc/mysql/mysql.conf.d/mysqld.cnf
-systemctl restart mysql.service
-mysql <<EOF
+
+apt -y update
+sudo apt -y install mysql-server
+
+sudo mysql <<EOF
 CREATE DATABASE wordpress;
-GRANT ALL ON wordpress.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
+CREATE USER 'wp_admin'@'%' IDENTIFIED BY 'root';
+GRANT ALL ON wordpress.* TO 'wp_admin'@'%';
 FLUSH PRIVILEGES;
-\q;
 EOF
+
+sudo sed -i 's/bind-address/#bind-address/g' /etc/mysql/mysql.conf.d/mysqld.cnf
+sudo sed -i 's/skip-external-locking/#skip-external-locking/g' /etc/mysql/mysql.conf.d/mysqld.cnf
+sudo systemctl restart mysql
