@@ -44,7 +44,7 @@ sudo sed -i "s/localhost/$ip_banco/g" /var/www/html/wordpress/wp-config.php
 ## ALTERANDO A LINGUAGEM PARA PORTUGUES BRASILEIRO
 sudo sed -i "s/\$language = ''/\$language = 'pt_BR'/" /var/www/html/wordpress/wp-admin/install.php
 sudo echo "define('WPLANG', 'pt_BR');" >> /var/www/html/wordpress/wp-config.php
-wget https://github.com/eduardaviriato/final/blob/master/languages.tar.gz
+wget https://github.com/wastsonbaia/trabalhofinal/blob/master/languages.tar.gz
 tar -zxf languages.tar.gz
 rm languages.tar.gz
 sudo mv languages /var/www/html/wordpress/wp-content/languages
@@ -54,7 +54,7 @@ sed -i ""$n"s/: 0;/: 2;/" /var/www/html/wordpress/wp-admin/install.php
 ## ALTERANDO AS CONFIGURACOES DO USUÁRIO
 aux=`grep -n '$weblog_title[[:blank:]]*=' /var/www/html/wordpress/wp-admin/install.php | cut -f 1 -d ":"`
 n=`echo $aux | cut -f 2 -d " "`
-sed -i ""$n"s/: '';/: 'Duda';/" /var/www/html/wordpress/wp-admin/install.php
+sed -i ""$n"s/: '';/: 'Wastson';/" /var/www/html/wordpress/wp-admin/install.php
 aux=`grep -n '$user_name[[:blank:]]*=' /var/www/html/wordpress/wp-admin/install.php | cut -f 1 -d ":"`
 n=`echo $aux | cut -f 2 -d " "`
 sed -i ""$n"s/: '';/: '"$usuario"';/" /var/www/html/wordpress/wp-admin/install.php
