@@ -65,3 +65,4 @@ sed -i ""$n"s/: '';/: '"$senha"';/" /var/www/html/wordpress/wp-admin/install.php
 aux=`grep -n '$admin_email[[:blank:]]*=' /var/www/html/wordpress/wp-admin/install.php | cut -f 1 -d ":"`
 n=`echo $aux | cut -f 2 -d " "`
 sed -i ""$n"s/: '';/: 'admin@email.com';/" /var/www/html/wordpress/wp-admin/install.php
+
